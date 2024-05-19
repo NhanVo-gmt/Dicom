@@ -18,12 +18,12 @@ def convertToImageFormat(pixel_array):
     return (np.maximum(pixel_array,0)/pixel_array.max())*255 # float pixels
     
 class DICOM:
-    def __init__(self, path_dcm):
+    def __init__(self):
+        pass
+
+    def process(self, path_dcm):
         self.path_dcm = path_dcm
         self.path_save = os.path.dirname(path_dcm) + "/" + Path(path_dcm).stem + ".png"
-        print(self.path_save)
-
-    def process(self):
         self.dcm = read(self.path_dcm)
         pixel_array = self.dcm.pixel_array.astype(float) 
         rescaled_image = convertToGrayPixelArray(pixel_array) # Convert to gray scale and JPG format
