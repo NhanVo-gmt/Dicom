@@ -53,6 +53,9 @@ def readDCMFile():
     ds = dicom.dcmread(image_path)
     return ds
 
+def add_alpha(color, alpha):
+    return (*color, alpha)
+
 class system():
 
     # Initialize module for the class
@@ -182,7 +185,7 @@ class system():
                               [anchor + VERTEBRA.m2], [anchor + VERTEBRA.a2]
                               ])
                     POINTS = POINTS.reshape((-1,1,2))
-                    cv2.fillPoly(result, [POINTS], COLOR_CODE)
+                    cv2.fillPoly(result, [POINTS], add_alpha(COLOR_CODE, 0.5))
 
                     cv2.circle(result, (anchor + VERTEBRA.a1), 7, COLOR_CODE, -1)
                     cv2.circle(result, (anchor + VERTEBRA.a2), 7, COLOR_CODE, -1)
@@ -216,7 +219,7 @@ class system():
                               [anchor + VERTEBRA.m2], [anchor + VERTEBRA.a2]
                               ])
                     POINTS = POINTS.reshape((-1,1,2))
-                    cv2.fillPoly(result, [POINTS], COLOR_CODE)
+                    cv2.fillPoly(result, [POINTS], add_alpha(COLOR_CODE, 0.5))
 
                     cv2.circle(result, (anchor + VERTEBRA.a1), 7, COLOR_CODE, -1)
                     cv2.circle(result, (anchor + VERTEBRA.a2), 7, COLOR_CODE, -1)
@@ -251,7 +254,7 @@ class system():
                               [anchor + VERTEBRA.m2], [anchor + VERTEBRA.a2]
                               ])
                         POINTS = POINTS.reshape((-1,1,2))
-                        cv2.fillPoly(result, [POINTS], COLOR_CODE)
+                        cv2.fillPoly(result, [POINTS], add_alpha(COLOR_CODE, 0.5))
 
                         cv2.circle(result, (anchor + VERTEBRA.a1), 7, COLOR_CODE, -1)
                         cv2.circle(result, (anchor + VERTEBRA.a2), 7, COLOR_CODE, -1)
