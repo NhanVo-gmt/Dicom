@@ -176,6 +176,13 @@ class system():
                     cv2.line(result, anchor + VERTEBRA.a1, anchor + VERTEBRA.a2, COLOR_CODE, 3)
                     cv2.line(result, anchor + VERTEBRA.m1, anchor + VERTEBRA.m2, COLOR_CODE, 3)
                     cv2.line(result, anchor + VERTEBRA.p1, anchor + VERTEBRA.p2, COLOR_CODE, 3)
+                    # Draw area between points
+                    POINTS = [[anchor + VERTEBRA.a1], [anchor + VERTEBRA.a2], 
+                              [anchor + VERTEBRA.m1], [anchor + VERTEBRA.m2],
+                              [anchor + VERTEBRA.p1], [anchor + VERTEBRA.p2]
+                              ]
+                    POINTS.reshape((-1,1,2))
+                    cv2.polylines(result, [POINTS], True, COLOR_CODE, -1)
                     cv2.circle(result, (anchor + VERTEBRA.a1), 7, COLOR_CODE, -1)
                     cv2.circle(result, (anchor + VERTEBRA.a2), 7, COLOR_CODE, -1)
                     cv2.circle(result, (anchor + VERTEBRA.m1), 7, COLOR_CODE, -1)
@@ -202,6 +209,13 @@ class system():
                     cv2.line(result,  anchor + VERTEBRA.a1, anchor + VERTEBRA.a2, COLOR_CODE, 3)
                     cv2.line(result, anchor + VERTEBRA.m1, anchor + VERTEBRA.m2, COLOR_CODE, 3)
                     cv2.line(result, anchor + VERTEBRA.p1, anchor + VERTEBRA.p2, COLOR_CODE, 3)
+                    # Draw area between points
+                    POINTS = [[anchor + VERTEBRA.a1], [anchor + VERTEBRA.a2], 
+                              [anchor + VERTEBRA.m1], [anchor + VERTEBRA.m2],
+                              [anchor + VERTEBRA.p1], [anchor + VERTEBRA.p2]
+                              ]
+                    POINTS.reshape((-1,1,2))
+                    cv2.polylines(result, [POINTS], True, COLOR_CODE, -1)
                     cv2.circle(result, (anchor + VERTEBRA.a1), 7, COLOR_CODE, -1)
                     cv2.circle(result, (anchor + VERTEBRA.a2), 7, COLOR_CODE, -1)
                     cv2.circle(result, (anchor + VERTEBRA.m1), 7, COLOR_CODE, -1)
