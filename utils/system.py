@@ -207,9 +207,9 @@ class system():
                     cv2.circle(result, (anchor + VERTEBRA.m2), 7, COLOR_CODE, -1)
                     cv2.circle(result, (anchor + VERTEBRA.p1), 7, COLOR_CODE, -1)
                     cv2.circle(result, (anchor + VERTEBRA.p2), 7, COLOR_CODE, -1)
-                    cv2.putText(result, ("Ha: {} mm".format(round(VERTEBRA.ha*0.15,1))), (position[0]+move_x, position[1]-70), cv2.FONT_HERSHEY_SIMPLEX, 1.15, COLOR_CODE, 6)   
-                    cv2.putText(result, ("Hm: {} mm".format(round(VERTEBRA.hm*0.15,1))), (position[0]+move_x, position[1]-25), cv2.FONT_HERSHEY_SIMPLEX, 1.15, COLOR_CODE, 6)
-                    cv2.putText(result, ("Hp: {} mm".format(round(VERTEBRA.hp*0.15,1))), (position[0]+move_x, position[1]+20), cv2.FONT_HERSHEY_SIMPLEX, 1.15, COLOR_CODE, 6)
+                    cv2.putText(result, ("Ha: {} mm".format(round(VERTEBRA.ha*0.15,1))), (position[0]+move_x, position[1]-70), cv2.FONT_HERSHEY_SIMPLEX, 1.2, COLOR_CODE, 6)   
+                    cv2.putText(result, ("Hm: {} mm".format(round(VERTEBRA.hm*0.15,1))), (position[0]+move_x, position[1]-25), cv2.FONT_HERSHEY_SIMPLEX, 1.2, COLOR_CODE, 6)
+                    cv2.putText(result, ("Hp: {} mm".format(round(VERTEBRA.hp*0.15,1))), (position[0]+move_x, position[1]+20), cv2.FONT_HERSHEY_SIMPLEX, 1.2, COLOR_CODE, 6)
                     cv2.putText(result, ("Loss: {}%".format(round(VERTEBRA.l*100,1))), (position[0]+move_x, position[1]+65), cv2.FONT_HERSHEY_SIMPLEX, 1.15, COLOR_CODE, 6)
             self.output = result
             

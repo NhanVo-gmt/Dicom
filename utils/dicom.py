@@ -23,14 +23,16 @@ class DICOM:
 
     def process(self, path_dcm):
         self.path_dcm = path_dcm
-        self.path_save = os.path.dirname(path_dcm) + "/" + Path(path_dcm).stem + ".png"
+        self.path_save = os.path.dirname(path_dcm) + "/" + Path(path_dcm).stem + ".png" # Generate the save path to the same as the dicom path
+
+        # Read dicom and process
         self.dcm = read(self.path_dcm)
-        pixel_array = self.dcm.pixel_array.astype(float) 
+        pixel_array = self.dcm.pixel_array.astype(float) # Get pixel array from dicom file 
         rescaled_image = convertToGrayPixelArray(pixel_array) # Convert to gray scale and JPG format
 
         final_image = np.uint8(rescaled_image) # integer pixels
         final_image = Image.fromarray(final_image)
-        final_image.save(self.path_save)
+        final_image.save(self.path_save) # Save image at save path
 
         self.image = final_image
 
