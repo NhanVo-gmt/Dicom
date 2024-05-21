@@ -188,6 +188,7 @@ class system():
             # Adding color based on the severion of the fracture
             # Adding text for more information of the fracture
             result = imageWithMasks(self.imageGRAY,maskA,maskB,COLOR_A,COLOR_B)
+            font_scale = 1.2
             for COUNT, VERTEBRA in enumerate(self.spine):
                 if VERTEBRA.valid == 1 and COUNT > 0:
                     if VERTEBRA.l > 0.2 and VERTEBRA.l <= 0.25: COLOR_CODE = MILD
@@ -207,10 +208,10 @@ class system():
                     cv2.circle(result, (anchor + VERTEBRA.m2), 7, COLOR_CODE, -1)
                     cv2.circle(result, (anchor + VERTEBRA.p1), 7, COLOR_CODE, -1)
                     cv2.circle(result, (anchor + VERTEBRA.p2), 7, COLOR_CODE, -1)
-                    cv2.putText(result, ("Ha: {} mm".format(round(VERTEBRA.ha*0.15,1))), (position[0]+move_x, position[1]-70), cv2.FONT_HERSHEY_SIMPLEX, 1.2, COLOR_CODE, 6)   
-                    cv2.putText(result, ("Hm: {} mm".format(round(VERTEBRA.hm*0.15,1))), (position[0]+move_x, position[1]-25), cv2.FONT_HERSHEY_SIMPLEX, 1.2, COLOR_CODE, 6)
-                    cv2.putText(result, ("Hp: {} mm".format(round(VERTEBRA.hp*0.15,1))), (position[0]+move_x, position[1]+20), cv2.FONT_HERSHEY_SIMPLEX, 1.2, COLOR_CODE, 6)
-                    cv2.putText(result, ("Loss: {}%".format(round(VERTEBRA.l*100,1))), (position[0]+move_x, position[1]+65), cv2.FONT_HERSHEY_SIMPLEX, 1.15, COLOR_CODE, 6)
+                    cv2.putText(result, ("Ha: {} mm".format(round(VERTEBRA.ha*0.15,1))), (position[0]+move_x, position[1]-70), cv2.FONT_HERSHEY_SIMPLEX, font_scale, COLOR_CODE, 6)   
+                    cv2.putText(result, ("Hm: {} mm".format(round(VERTEBRA.hm*0.15,1))), (position[0]+move_x, position[1]-25), cv2.FONT_HERSHEY_SIMPLEX, font_scale, COLOR_CODE, 6)
+                    cv2.putText(result, ("Hp: {} mm".format(round(VERTEBRA.hp*0.15,1))), (position[0]+move_x, position[1]+20), cv2.FONT_HERSHEY_SIMPLEX, font_scale, COLOR_CODE, 6)
+                    cv2.putText(result, ("Loss: {}%".format(round(VERTEBRA.l*100,1))), (position[0]+move_x, position[1]+65), cv2.FONT_HERSHEY_SIMPLEX, font_scale, COLOR_CODE, 6)
             self.output = result
             
             result = cv2.cvtColor(self.imageGRAY,cv2.COLOR_GRAY2RGB)
@@ -234,10 +235,10 @@ class system():
                         cv2.circle(result, (anchor + VERTEBRA.m2), 7, COLOR_CODE, -1)
                         cv2.circle(result, (anchor + VERTEBRA.p1), 7, COLOR_CODE, -1)
                         cv2.circle(result, (anchor + VERTEBRA.p2), 7, COLOR_CODE, -1)
-                        cv2.putText(result, ("Ha: {} mm".format(round(VERTEBRA.ha*0.15,1))), (position[0]+move_x, position[1]-70), cv2.FONT_HERSHEY_SIMPLEX, 1.15, COLOR_CODE, 6)   
-                        cv2.putText(result, ("Hm: {} mm".format(round(VERTEBRA.hm*0.15,1))), (position[0]+move_x, position[1]-25), cv2.FONT_HERSHEY_SIMPLEX, 1.15, COLOR_CODE, 6)
-                        cv2.putText(result, ("Hp: {} mm".format(round(VERTEBRA.hp*0.15,1))), (position[0]+move_x, position[1]+20), cv2.FONT_HERSHEY_SIMPLEX, 1.15, COLOR_CODE, 6)
-                        cv2.putText(result, ("Loss: {}%".format(round(VERTEBRA.l*100,1))), (position[0]+move_x, position[1]+65), cv2.FONT_HERSHEY_SIMPLEX, 1.15, COLOR_CODE, 6)
+                        cv2.putText(result, ("Ha: {} mm".format(round(VERTEBRA.ha*0.15,1))), (position[0]+move_x, position[1]-70), cv2.FONT_HERSHEY_SIMPLEX, font_scale, COLOR_CODE, 6)   
+                        cv2.putText(result, ("Hm: {} mm".format(round(VERTEBRA.hm*0.15,1))), (position[0]+move_x, position[1]-25), cv2.FONT_HERSHEY_SIMPLEX, font_scale, COLOR_CODE, 6)
+                        cv2.putText(result, ("Hp: {} mm".format(round(VERTEBRA.hp*0.15,1))), (position[0]+move_x, position[1]+20), cv2.FONT_HERSHEY_SIMPLEX, font_scale, COLOR_CODE, 6)
+                        cv2.putText(result, ("Loss: {}%".format(round(VERTEBRA.l*100,1))), (position[0]+move_x, position[1]+65), cv2.FONT_HERSHEY_SIMPLEX, font_scale, COLOR_CODE, 6)
             self.fracture = result
             
             self.workflow = np.array([self.imageRGB, 
