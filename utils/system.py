@@ -169,49 +169,61 @@ class system():
             for COUNT, VERTEBRA in enumerate(self.spine):
                 if VERTEBRA.valid == 1 and COUNT > 0:
                     COLOR_CODE = WHITE
+                    TOP_LEFT_VERTEBRA = anchor + VERTEBRA.a1
+                    BOT_LEFT_VERTEBRA = anchor + VERTEBRA.a2
+                    TOP_MID_VERTEBRA = anchor + VERTEBRA.m1
+                    BOT_MID_VERTEBRA = anchor + VERTEBRA.m2
+                    TOP_RIGHT_VERTEBRA = anchor + VERTEBRA.p1
+                    BOT_RIGHT_VERTEBRA = anchor + VERTEBRA.p2
                     move_x = 200
                     box = self.vertebraDetectPad[COUNT]  
                     anchor = [box[0], box[1]]
                     position = anchor + VERTEBRA.centroid
-                    cv2.line(result, anchor + VERTEBRA.a1, anchor + VERTEBRA.a2, COLOR_CODE, 3)
-                    cv2.line(result, anchor + VERTEBRA.m1, anchor + VERTEBRA.m2, COLOR_CODE, 3)
-                    cv2.line(result, anchor + VERTEBRA.p1, anchor + VERTEBRA.p2, COLOR_CODE, 3)
-                    cv2.circle(result, (anchor + VERTEBRA.a1), 7, COLOR_CODE, -1)
-                    cv2.circle(result, (anchor + VERTEBRA.a2), 7, COLOR_CODE, -1)
-                    cv2.circle(result, (anchor + VERTEBRA.m1), 7, COLOR_CODE, -1)
-                    cv2.circle(result, (anchor + VERTEBRA.m2), 7, COLOR_CODE, -1)
-                    cv2.circle(result, (anchor + VERTEBRA.p1), 7, COLOR_CODE, -1)
-                    cv2.circle(result, (anchor + VERTEBRA.p2), 7, COLOR_CODE, -1)
+                    cv2.line(result, TOP_LEFT_VERTEBRA, BOT_LEFT_VERTEBRA, COLOR_CODE, 3)
+                    cv2.line(result, TOP_MID_VERTEBRA, BOT_MID_VERTEBRA, COLOR_CODE, 3)
+                    cv2.line(result, TOP_RIGHT_VERTEBRA, BOT_RIGHT_VERTEBRA, COLOR_CODE, 3)
+                    cv2.circle(result, (TOP_LEFT_VERTEBRA), 7, COLOR_CODE, -1)
+                    cv2.circle(result, (BOT_LEFT_VERTEBRA), 7, COLOR_CODE, -1)
+                    cv2.circle(result, (TOP_MID_VERTEBRA), 7, COLOR_CODE, -1)
+                    cv2.circle(result, (BOT_MID_VERTEBRA), 7, COLOR_CODE, -1)
+                    cv2.circle(result, (TOP_RIGHT_VERTEBRA), 7, COLOR_CODE, -1)
+                    cv2.circle(result, (BOT_RIGHT_VERTEBRA), 7, COLOR_CODE, -1)
             self.outputMeasurement = result
             
             # Draw circle for the small points (including 4 vertebras and 2 middles) and connecting them using line
             # Adding color based on the severion of the fracture
             # Adding text for more information of the fracture
             result = imageWithMasks(self.imageGRAY,maskA,maskB,COLOR_A,COLOR_B)
-            font_scale = 1.2
+            FONT_SCALE = 1.5
             for COUNT, VERTEBRA in enumerate(self.spine):
                 if VERTEBRA.valid == 1 and COUNT > 0:
                     if VERTEBRA.l > 0.2 and VERTEBRA.l <= 0.25: COLOR_CODE = MILD
                     elif VERTEBRA.l > 0.25 and VERTEBRA.l <= 0.40: COLOR_CODE = MODERATE
                     elif VERTEBRA.l > 0.40: COLOR_CODE = SEVERE
                     else: COLOR_CODE = NORMAL
+                    TOP_LEFT_VERTEBRA = anchor + VERTEBRA.a1
+                    BOT_LEFT_VERTEBRA = anchor + VERTEBRA.a2
+                    TOP_MID_VERTEBRA = anchor + VERTEBRA.m1
+                    BOT_MID_VERTEBRA = anchor + VERTEBRA.m2
+                    TOP_RIGHT_VERTEBRA = anchor + VERTEBRA.p1
+                    BOT_RIGHT_VERTEBRA = anchor + VERTEBRA.p2
                     move_x = 180
                     box = self.vertebraDetectPad[COUNT]  
                     anchor = [box[0], box[1]]
                     position = anchor + VERTEBRA.centroid
-                    cv2.line(result,  anchor + VERTEBRA.a1, anchor + VERTEBRA.a2, COLOR_CODE, 3)
-                    cv2.line(result, anchor + VERTEBRA.m1, anchor + VERTEBRA.m2, COLOR_CODE, 3)
-                    cv2.line(result, anchor + VERTEBRA.p1, anchor + VERTEBRA.p2, COLOR_CODE, 3)
-                    cv2.circle(result, (anchor + VERTEBRA.a1), 7, COLOR_CODE, -1)
-                    cv2.circle(result, (anchor + VERTEBRA.a2), 7, COLOR_CODE, -1)
-                    cv2.circle(result, (anchor + VERTEBRA.m1), 7, COLOR_CODE, -1)
-                    cv2.circle(result, (anchor + VERTEBRA.m2), 7, COLOR_CODE, -1)
-                    cv2.circle(result, (anchor + VERTEBRA.p1), 7, COLOR_CODE, -1)
-                    cv2.circle(result, (anchor + VERTEBRA.p2), 7, COLOR_CODE, -1)
-                    cv2.putText(result, ("Ha: {} mm".format(round(VERTEBRA.ha*0.15,1))), (position[0]+move_x, position[1]-70), cv2.FONT_HERSHEY_SIMPLEX, font_scale, COLOR_CODE, 6)   
-                    cv2.putText(result, ("Hm: {} mm".format(round(VERTEBRA.hm*0.15,1))), (position[0]+move_x, position[1]-25), cv2.FONT_HERSHEY_SIMPLEX, font_scale, COLOR_CODE, 6)
-                    cv2.putText(result, ("Hp: {} mm".format(round(VERTEBRA.hp*0.15,1))), (position[0]+move_x, position[1]+20), cv2.FONT_HERSHEY_SIMPLEX, font_scale, COLOR_CODE, 6)
-                    cv2.putText(result, ("Loss: {}%".format(round(VERTEBRA.l*100,1))), (position[0]+move_x, position[1]+65), cv2.FONT_HERSHEY_SIMPLEX, font_scale, COLOR_CODE, 6)
+                    cv2.line(result, TOP_LEFT_VERTEBRA, BOT_LEFT_VERTEBRA, COLOR_CODE, 3)
+                    cv2.line(result, TOP_MID_VERTEBRA, BOT_MID_VERTEBRA, COLOR_CODE, 3)
+                    cv2.line(result, TOP_RIGHT_VERTEBRA, BOT_RIGHT_VERTEBRA, COLOR_CODE, 3)
+                    cv2.circle(result, (TOP_LEFT_VERTEBRA), 7, COLOR_CODE, -1)
+                    cv2.circle(result, (BOT_LEFT_VERTEBRA), 7, COLOR_CODE, -1)
+                    cv2.circle(result, (TOP_MID_VERTEBRA), 7, COLOR_CODE, -1)
+                    cv2.circle(result, (BOT_MID_VERTEBRA), 7, COLOR_CODE, -1)
+                    cv2.circle(result, (TOP_RIGHT_VERTEBRA), 7, COLOR_CODE, -1)
+                    cv2.circle(result, (BOT_RIGHT_VERTEBRA), 7, COLOR_CODE, -1)
+                    cv2.putText(result, ("Ha: {} mm".format(round(VERTEBRA.ha*0.15,1))), (position[0]+move_x, position[1]-70), cv2.FONT_HERSHEY_SIMPLEX, FONT_SCALE, COLOR_CODE, 6)   
+                    cv2.putText(result, ("Hm: {} mm".format(round(VERTEBRA.hm*0.15,1))), (position[0]+move_x, position[1]-25), cv2.FONT_HERSHEY_SIMPLEX, FONT_SCALE, COLOR_CODE, 6)
+                    cv2.putText(result, ("Hp: {} mm".format(round(VERTEBRA.hp*0.15,1))), (position[0]+move_x, position[1]+20), cv2.FONT_HERSHEY_SIMPLEX, FONT_SCALE, COLOR_CODE, 6)
+                    cv2.putText(result, ("Loss: {}%".format(round(VERTEBRA.l*100,1))), (position[0]+move_x, position[1]+65), cv2.FONT_HERSHEY_SIMPLEX, FONT_SCALE, COLOR_CODE, 6)
             self.output = result
             
             result = cv2.cvtColor(self.imageGRAY,cv2.COLOR_GRAY2RGB)
@@ -222,23 +234,29 @@ class system():
                     elif VERTEBRA.l > 0.40: COLOR_CODE = SEVERE
                     else: COLOR_CODE = NORMAL
                     if VERTEBRA.l > 0.2:
+                        TOP_LEFT_VERTEBRA = anchor + VERTEBRA.a1
+                        BOT_LEFT_VERTEBRA = anchor + VERTEBRA.a2
+                        TOP_MID_VERTEBRA = anchor + VERTEBRA.m1
+                        BOT_MID_VERTEBRA = anchor + VERTEBRA.m2
+                        TOP_RIGHT_VERTEBRA = anchor + VERTEBRA.p1
+                        BOT_RIGHT_VERTEBRA = anchor + VERTEBRA.p2
                         move_x = 180
                         box = self.vertebraDetectPad[COUNT]  
                         anchor = [box[0], box[1]]
                         position = anchor + VERTEBRA.centroid
-                        cv2.line(result,  anchor + VERTEBRA.a1, anchor + VERTEBRA.a2, COLOR_CODE, 3)
-                        cv2.line(result, anchor + VERTEBRA.m1, anchor + VERTEBRA.m2, COLOR_CODE, 3)
-                        cv2.line(result, anchor + VERTEBRA.p1, anchor + VERTEBRA.p2, COLOR_CODE, 3)
-                        cv2.circle(result, (anchor + VERTEBRA.a1), 7, COLOR_CODE, -1)
-                        cv2.circle(result, (anchor + VERTEBRA.a2), 7, COLOR_CODE, -1)
-                        cv2.circle(result, (anchor + VERTEBRA.m1), 7, COLOR_CODE, -1)
-                        cv2.circle(result, (anchor + VERTEBRA.m2), 7, COLOR_CODE, -1)
-                        cv2.circle(result, (anchor + VERTEBRA.p1), 7, COLOR_CODE, -1)
-                        cv2.circle(result, (anchor + VERTEBRA.p2), 7, COLOR_CODE, -1)
-                        cv2.putText(result, ("Ha: {} mm".format(round(VERTEBRA.ha*0.15,1))), (position[0]+move_x, position[1]-70), cv2.FONT_HERSHEY_SIMPLEX, font_scale, COLOR_CODE, 6)   
-                        cv2.putText(result, ("Hm: {} mm".format(round(VERTEBRA.hm*0.15,1))), (position[0]+move_x, position[1]-25), cv2.FONT_HERSHEY_SIMPLEX, font_scale, COLOR_CODE, 6)
-                        cv2.putText(result, ("Hp: {} mm".format(round(VERTEBRA.hp*0.15,1))), (position[0]+move_x, position[1]+20), cv2.FONT_HERSHEY_SIMPLEX, font_scale, COLOR_CODE, 6)
-                        cv2.putText(result, ("Loss: {}%".format(round(VERTEBRA.l*100,1))), (position[0]+move_x, position[1]+65), cv2.FONT_HERSHEY_SIMPLEX, font_scale, COLOR_CODE, 6)
+                        cv2.line(result, TOP_LEFT_VERTEBRA, BOT_LEFT_VERTEBRA, COLOR_CODE, 3)
+                        cv2.line(result, TOP_MID_VERTEBRA, BOT_MID_VERTEBRA, COLOR_CODE, 3)
+                        cv2.line(result, TOP_RIGHT_VERTEBRA, BOT_RIGHT_VERTEBRA, COLOR_CODE, 3)
+                        cv2.circle(result, (TOP_LEFT_VERTEBRA), 7, COLOR_CODE, -1)
+                        cv2.circle(result, (BOT_LEFT_VERTEBRA), 7, COLOR_CODE, -1)
+                        cv2.circle(result, (TOP_MID_VERTEBRA), 7, COLOR_CODE, -1)
+                        cv2.circle(result, (BOT_MID_VERTEBRA), 7, COLOR_CODE, -1)
+                        cv2.circle(result, (TOP_RIGHT_VERTEBRA), 7, COLOR_CODE, -1)
+                        cv2.circle(result, (BOT_RIGHT_VERTEBRA), 7, COLOR_CODE, -1)
+                        cv2.putText(result, ("Ha: {} mm".format(round(VERTEBRA.ha*0.15,1))), (position[0]+move_x, position[1]-70), cv2.FONT_HERSHEY_SIMPLEX, FONT_SCALE, COLOR_CODE, 6)   
+                        cv2.putText(result, ("Hm: {} mm".format(round(VERTEBRA.hm*0.15,1))), (position[0]+move_x, position[1]-25), cv2.FONT_HERSHEY_SIMPLEX, FONT_SCALE, COLOR_CODE, 6)
+                        cv2.putText(result, ("Hp: {} mm".format(round(VERTEBRA.hp*0.15,1))), (position[0]+move_x, position[1]+20), cv2.FONT_HERSHEY_SIMPLEX, FONT_SCALE, COLOR_CODE, 6)
+                        cv2.putText(result, ("Loss: {}%".format(round(VERTEBRA.l*100,1))), (position[0]+move_x, position[1]+65), cv2.FONT_HERSHEY_SIMPLEX, FONT_SCALE, COLOR_CODE, 6)
             self.fracture = result
             
             self.workflow = np.array([self.imageRGB, 
