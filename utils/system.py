@@ -186,7 +186,7 @@ class system():
                     overlay = result.copy()
                     cv2.fillPoly(overlay, [POINTS], COLOR_CODE)
 
-                    alpha = 0.8
+                    alpha = 0.4
                     result = cv2.addWeighted(overlay, alpha, result, 1 - alpha, 0)
 
                     cv2.circle(result, (anchor + VERTEBRA.a1), 7, COLOR_CODE, -1)
@@ -224,7 +224,7 @@ class system():
                     overlay = result.copy()
                     cv2.fillPoly(overlay, [POINTS], COLOR_CODE)
 
-                    alpha = 0.8
+                    alpha = 0.4
                     result = cv2.addWeighted(overlay, alpha, result, 1 - alpha, 0)
 
                     cv2.circle(result, (anchor + VERTEBRA.a1), 7, COLOR_CODE, -1)
@@ -263,7 +263,7 @@ class system():
                         overlay = result.copy()
                         cv2.fillPoly(overlay, [POINTS], COLOR_CODE)
 
-                        alpha = 0.8
+                        alpha = 0.4
                         result = cv2.addWeighted(overlay, alpha, result, 1 - alpha, 0)
 
                         cv2.circle(result, (anchor + VERTEBRA.a1), 7, COLOR_CODE, -1)
