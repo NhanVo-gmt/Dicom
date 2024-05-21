@@ -53,8 +53,6 @@ def readDCMFile():
     ds = dicom.dcmread(image_path)
     return ds
 
-def add_alpha(color, alpha):
-    return (*color, alpha)
 
 class system():
 
@@ -185,7 +183,11 @@ class system():
                               [anchor + VERTEBRA.m2], [anchor + VERTEBRA.a2]
                               ])
                     POINTS = POINTS.reshape((-1,1,2))
-                    cv2.fillPoly(result, [POINTS], add_alpha(COLOR_CODE, 0.5))
+                    overlay = result.copy()
+                    cv2.fillPoly(overlay, [POINTS], COLOR_CODE)
+
+                    alpha = 0.4
+                    cv2.addWeighted(overlay, alpha, result, 1 - alpha, 0)
 
                     cv2.circle(result, (anchor + VERTEBRA.a1), 7, COLOR_CODE, -1)
                     cv2.circle(result, (anchor + VERTEBRA.a2), 7, COLOR_CODE, -1)
@@ -219,7 +221,11 @@ class system():
                               [anchor + VERTEBRA.m2], [anchor + VERTEBRA.a2]
                               ])
                     POINTS = POINTS.reshape((-1,1,2))
-                    cv2.fillPoly(result, [POINTS], add_alpha(COLOR_CODE, 0.5))
+                    overlay = result.copy()
+                    cv2.fillPoly(overlay, [POINTS], COLOR_CODE)
+
+                    alpha = 0.4
+                    cv2.addWeighted(overlay, alpha, result, 1 - alpha, 0)
 
                     cv2.circle(result, (anchor + VERTEBRA.a1), 7, COLOR_CODE, -1)
                     cv2.circle(result, (anchor + VERTEBRA.a2), 7, COLOR_CODE, -1)
@@ -250,11 +256,15 @@ class system():
                         cv2.line(result, anchor + VERTEBRA.p1, anchor + VERTEBRA.p2, COLOR_CODE, 3)
                         # Draw area between points
                         POINTS = np.array([[anchor + VERTEBRA.a1], [anchor + VERTEBRA.m1], 
-                              [anchor + VERTEBRA.p1], [anchor + VERTEBRA.p2],
-                              [anchor + VERTEBRA.m2], [anchor + VERTEBRA.a2]
-                              ])
+                                [anchor + VERTEBRA.p1], [anchor + VERTEBRA.p2],
+                                [anchor + VERTEBRA.m2], [anchor + VERTEBRA.a2]
+                                ])
                         POINTS = POINTS.reshape((-1,1,2))
-                        cv2.fillPoly(result, [POINTS], add_alpha(COLOR_CODE, 0.5))
+                        overlay = result.copy()
+                        cv2.fillPoly(overlay, [POINTS], COLOR_CODE)
+
+                        alpha = 0.4
+                        cv2.addWeighted(overlay, alpha, result, 1 - alpha, 0)
 
                         cv2.circle(result, (anchor + VERTEBRA.a1), 7, COLOR_CODE, -1)
                         cv2.circle(result, (anchor + VERTEBRA.a2), 7, COLOR_CODE, -1)
