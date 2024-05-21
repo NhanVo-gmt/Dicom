@@ -182,7 +182,8 @@ class system():
                               [anchor + VERTEBRA.p1], [anchor + VERTEBRA.p2]
                               ])
                     POINTS = POINTS.reshape((-1,1,2))
-                    cv2.polylines(result, [POINTS], True, COLOR_CODE, -1)
+                    cv2.fillPoly(result, [POINTS], COLOR_CODE)
+                    
                     cv2.circle(result, (anchor + VERTEBRA.a1), 7, COLOR_CODE, -1)
                     cv2.circle(result, (anchor + VERTEBRA.a2), 7, COLOR_CODE, -1)
                     cv2.circle(result, (anchor + VERTEBRA.m1), 7, COLOR_CODE, -1)
@@ -215,7 +216,7 @@ class system():
                               [anchor + VERTEBRA.p1], [anchor + VERTEBRA.p2]
                               ])
                     POINTS = POINTS.reshape((-1,1,2))
-                    cv2.polylines(result, [POINTS], True, COLOR_CODE, -1)
+                    cv2.fillPoly(result, [POINTS], COLOR_CODE)
 
                     cv2.circle(result, (anchor + VERTEBRA.a1), 7, COLOR_CODE, -1)
                     cv2.circle(result, (anchor + VERTEBRA.a2), 7, COLOR_CODE, -1)
@@ -250,7 +251,8 @@ class system():
                                 [anchor + VERTEBRA.p1], [anchor + VERTEBRA.p2]
                                 ])
                         POINTS = POINTS.reshape((-1,1,2))
-                        cv2.polylines(result, [POINTS], True, COLOR_CODE, -1)
+                        cv2.fillPoly(result, [POINTS], COLOR_CODE)
+
                         cv2.circle(result, (anchor + VERTEBRA.a1), 7, COLOR_CODE, -1)
                         cv2.circle(result, (anchor + VERTEBRA.a2), 7, COLOR_CODE, -1)
                         cv2.circle(result, (anchor + VERTEBRA.m1), 7, COLOR_CODE, -1)
